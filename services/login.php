@@ -5,7 +5,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $user = $User->getUser($email);
+        $user = $User->getUserByEmail($email);
         if (!$user || !password_verify($password, $user["password"])) {
             http_response_code(400);
         } else {

@@ -20,9 +20,28 @@
         }
 
         /**
+         * Fetch and return one user by the id provided
+        */
+        function getUserByID($id) {
+            $query = "SELECT id, email, username, department_id FROM User WHERE id = ?;";
+            $stmt = mysqli_prepare($this->connection, $query);
+            
+            if (!$stmt) {
+                throw new Exception("Error while preparing Statment");
+            }
+
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $user = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
+            return $user;
+        }
+
+        /**
          * Fetch and return one user by the email provided
         */
-        function getUser($email) {
+        function getUserByEmail($email) {
             $query = "SELECT id, email, username, password FROM User WHERE email = ?;";
             $stmt = mysqli_prepare($this->connection, $query);
             
@@ -34,9 +53,31 @@
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             $user = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             return $user;
         }
         
+        /**
+         * Set the department id of the user identified by $userID to 
+         * $departmentID
+        */
+        function setDepartment($userID, $departmentID) {
+            $query = "UPDATE User SET department_id = ? WHERE id = ?;";
+            $stmt = mysqli_prepare($this->connection, $query);
+            if (!$stmt) {
+                throw new Exception("Error while preparing Statment");
+            }
+
+            mysqli_stmt_bind_param($stmt, "ii", $departmentID, $userID);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_errno($stmt) > 0) {
+                throw new Exception("Something went wrong while creating user: " . mysqli_error($this->connection));
+            }
+
+            mysqli_stmt_close($stmt);
+        }
+
         /**
          * Create New User Method
         */
