@@ -18,6 +18,25 @@
                 return null;
             }
         }
+
+        /**
+         * Fetch and return one user by the email provided
+        */
+        function getUser($email) {
+            $query = "SELECT id, email, username, password FROM User WHERE email = ?;";
+            $stmt = mysqli_prepare($this->connection, $query);
+            
+            if (!$stmt) {
+                throw new Exception("Error while preparing Statment");
+            }
+
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $user = mysqli_fetch_assoc($result);
+            return $user;
+        }
+        
         /**
          * Create New User Method
         */

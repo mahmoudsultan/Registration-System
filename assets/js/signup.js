@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    console.log("Loaded");
-    
-})
 function submit_signup() {
     var data = {
         username: $('#username').val(),
@@ -11,7 +7,7 @@ function submit_signup() {
     
     $.ajax({
         type: "POST",
-        url: "create_user.php",
+        url: "services/create_user.php",
         data: data,
         dataType: "json",
         success: function(response, textStatus, xhr) {

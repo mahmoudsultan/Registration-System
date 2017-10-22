@@ -1,5 +1,5 @@
 <?php
-    require_once 'setup.php';
+    require_once '../setup.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'];
@@ -9,6 +9,7 @@
         $response = [];
         try {
             $User->createUser($username, $email, $password);  
+            // TODO return user id
         } catch (InvalidateInputException $e) {
             http_response_code(400);
             $response = ["error" => $e->getMessage()];
