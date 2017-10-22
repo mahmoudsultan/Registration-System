@@ -29,15 +29,20 @@
                 // re-throw for the controller to handle
                 throw $e;
             }
+            
+            // hash the password before storing in database
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             if (!$this->connection) {
                 throw new Exception("No Connection to Database");
             }
+
             $stmt = mysqli_prepare($this->connection, 'INSERT INTO `User`(`username`, `email`, `password`) VALUES (?,?,?)');
             if (!$stmt) {
                 // TODO
                 throw new Exception("Error while preparing Statment");
             }
+            
             mysqli_stmt_bind_param($stmt, 'sss', $username, $email, $password);
             mysqli_stmt_execute($stmt);
 
