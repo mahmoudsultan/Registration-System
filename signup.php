@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require_once 'setup.php';
     if (!isset($_SESSION['usersession'])) {
         include 'views/_header.php';
