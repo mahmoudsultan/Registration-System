@@ -13,7 +13,8 @@ function choose_department(userID) {
             $('#error').slideUp();
             $('#success').slideDown().text("You've selected this departemnt succesfully.. refreshing the Homepage..");
             setTimeout(function() {
-                location.reload();
+                console.log("Yup");
+                location.reload(true);
             }, 1000)
         },
         error: function(response, textStatus, xhr) {

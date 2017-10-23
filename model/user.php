@@ -57,6 +57,20 @@
             return $user;
         }
         
+        function getUserCountByUsername($username) {
+            $query = "SELECT count(*) as total FROM User WHERE username = ?";
+            $stmt = mysqli_prepare($this->connection, $query);
+            if (!$stmt) {
+                throw new Exception("Error while preparing Statment");
+            }
+
+            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $count = mysqli_fetch_assoc($result);
+            return $count["total"];
+        }
+
         /**
          * Set the department id of the user identified by $userID to 
          * $departmentID

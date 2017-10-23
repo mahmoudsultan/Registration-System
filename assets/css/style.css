@@ -40,3 +40,11 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.error-input{
+  border-color: red !important;
+}
+
+.correct-input {
+  border-color: green !important;
+}

@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
+        <div class="lead">Available Courses: </div>
         <?php                        
             while($course = mysqli_fetch_assoc($courses)) {
         ?>

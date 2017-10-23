@@ -5,6 +5,7 @@
         $userID = $_POST['userID'];
         $departmentID = $_POST['departmentID'];
         $User->setDepartment($userID, $departmentID);
+        http_response_code(200);
     } else {
-        http_response_code(401);
+        http_response_code(404);
     }

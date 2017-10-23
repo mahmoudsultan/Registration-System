@@ -1,4 +1,9 @@
 <?php
-    include "views/_header.html";
-    include "views/login.html";
-    include "views/_footer.html";
+    if (isset($_SESSION['usersession'])) {
+        header("location: /index.php");
+        exit();
+    } else {
+        include "views/_header.php";
+        include "views/login.html";
+        include "views/_footer.html";
+    }

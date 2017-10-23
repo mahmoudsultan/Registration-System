@@ -1,6 +1,10 @@
 <?php
     require_once 'setup.php';
-    include 'views/_header.html';
-    include 'views/signup.html';
-    include 'views/_footer.html';
+    if (!isset($_SESSION['usersession'])) {
+        include 'views/_header.php';
+        include 'views/signup.html';
+        include 'views/_footer.html';
+    } else {
+        header("location: /index.html");
+    }
 ?>
