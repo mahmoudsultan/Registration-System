@@ -2,6 +2,9 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color: white !important;
+    background-image: url('../images/bg.jpeg');
+    background-size: contain;
   }
 
   main {
@@ -47,4 +50,8 @@
 
 .correct-input {
   border-color: green !important;
+}
+
+.card {
+  background-color: #081617 !important;
 }
